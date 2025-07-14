@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { handleSignUp } from '../../../../lib/sign-up'
 
-export default function SignUpForm() {
+export default function FormSignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -15,12 +15,7 @@ export default function SignUpForm() {
     setLoading(true)
     setError('')
     try {
-      const { error } = await handleSignUp(
-        email,
-        password,
-        name,
-        image || undefined
-      )
+      const { error } = await handleSignUp(email, password, name, image || undefined)
       if (error) {
         setError(error.message || 'Sign up failed')
       } else {
@@ -34,7 +29,10 @@ export default function SignUpForm() {
   }
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit}>
+    <form
+      className="space-y-4"
+      onSubmit={handleSubmit}
+    >
       <div>
         <label
           htmlFor="name"
